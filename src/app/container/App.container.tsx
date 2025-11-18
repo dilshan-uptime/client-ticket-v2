@@ -58,8 +58,8 @@ export const AppContainer = () => {
         className={`transition-all duration-300 ${
           isLoggedIn
             ? sidebarOpen
-              ? "ml-56"
-              : "ml-16"
+              ? "ml-64"
+              : "ml-20"
             : "ml-0"
         } w-full p-0`}
       >
