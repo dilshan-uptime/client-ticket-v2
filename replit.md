@@ -76,18 +76,32 @@ The application runs on port 5000 and is configured for the Replit environment w
 6. Token refresh handled automatically on 401/403 errors
 
 ## Recent Changes
+- 2025-11-18: Professional NavBar with SVG Icons
+  - Created custom SVG icon components (HomeIcon, TicketIcon, LogoutIcon)
+  - Redesigned sidebar with gradient background (#ee754e to #d66540)
+  - Added smooth animations and transitions (scale, opacity, translate)
+  - Implemented hover tooltips for collapsed sidebar state
+  - Added active route indicators with visual feedback
+  - Enhanced accessibility with ARIA labels and proper roles
+  - Improved responsive design with better spacing and sizing
+  - Added professional hover states and active animations
+
+- 2025-11-18: Fixed Popup Blocking Issue
+  - Switched from popup to redirect authentication (loginRedirect)
+  - Updated all MSAL authentication flows to use redirects
+  - Fixed iframe/webview compatibility issues
+
 - 2025-11-18: Microsoft SSO Authentication Implementation
   - Installed and configured @azure/msal-react and @azure/msal-browser
   - Created MSAL configuration with tenant and client ID support
   - Implemented SsoLoginPage with Microsoft sign-in button
   - Created custom useMsalAuth hook for authentication management
-  - Updated Redux auth slice to work with Microsoft SSO
+  - Updated Redux auth slice with isAuthenticated state
   - Removed username/password login and sign-up pages
   - Created new HomePage with user profile information
-  - Updated NavBar with logout functionality using MSAL
   - Applied brand color #ee754e throughout the UI
   - Configured deployment for static site build
-  - Created .env.example for environment variable documentation
+  - Created comprehensive documentation
 
 - 2025-11-18: Initial Replit setup
   - Configured Vite for Replit environment (port 5000, host 0.0.0.0)
