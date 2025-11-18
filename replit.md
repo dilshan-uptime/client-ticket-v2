@@ -76,6 +76,15 @@ The application runs on port 5000 and is configured for the Replit environment w
 6. Token refresh handled automatically on 401/403 errors
 
 ## Recent Changes
+- 2025-11-18: SSO Redirect to Ticket Dashboard
+  - Changed redirect URI from /home to /ticket (users now land on ticket dashboard after SSO)
+  - Created professional Ticket Dashboard with stats cards and ticket table
+  - Added mock data with TODO comments for future API integration
+  - Fixed App container margins to match sidebar width (ml-64/ml-20)
+  - Added comprehensive Azure AD redirect URI update documentation
+  - Created AZURE_REDIRECT_UPDATE.md guide for deployment
+  - Updated .env.example with new redirect URI
+
 - 2025-11-18: Professional NavBar with SVG Icons
   - Created custom SVG icon components (HomeIcon, TicketIcon, LogoutIcon)
   - Redesigned sidebar with gradient background (#ee754e to #d66540)

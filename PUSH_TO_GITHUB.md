@@ -33,7 +33,7 @@ git config user.email "your-email@example.com"
 git add .
 
 # Create a commit
-git commit -m "feat: complete Microsoft SSO with professional navbar and SVG icons"
+git commit -m "feat: Microsoft SSO with professional navbar, ticket dashboard, and Azure redirect to /ticket"
 
 # Connect to your GitHub repository
 git remote add origin https://github.com/dilshan-uptime/client-ticket-v2.git
