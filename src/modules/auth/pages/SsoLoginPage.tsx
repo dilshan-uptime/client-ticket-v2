@@ -18,7 +18,7 @@ export const SsoLoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      await instance.loginPopup(loginRequest);
+      await instance.loginRedirect(loginRequest);
     } catch (error) {
       console.error('Login failed:', error);
     }

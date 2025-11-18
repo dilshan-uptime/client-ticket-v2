@@ -42,25 +42,9 @@ export const useMsalAuth = () => {
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             try {
-              const response = await instance.acquireTokenPopup(loginRequest);
-              
-              const nameParts = (account.name || account.username).split(' ');
-              const authResponse: AuthenticationResponse = {
-                token: response.accessToken,
-                refreshToken: response.idToken,
-                user: {
-                  id: account.localAccountId,
-                  email: account.username,
-                  firstName: nameParts[0] || account.username,
-                  lastName: nameParts.slice(1).join(' ') || '',
-                  roleCode: 'USER',
-                },
-              };
-
-              storage.set(AUTH_RESPONSE, authResponse);
-              dispatch(authActions.authenticateUserSuccess(authResponse));
-            } catch (popupError) {
-              console.error('Interactive token acquisition failed:', popupError);
+              await instance.acquireTokenRedirect(loginRequest);
+            } catch (redirectError) {
+              console.error('Interactive token acquisition failed:', redirectError);
             }
           } else {
             console.error('Token acquisition failed:', error);
@@ -94,14 +78,12 @@ export const useMsalAuth = () => {
         });
         return response.accessToken;
       } catch (error) {
-        console.error('Failed to acquire token:', error);
-        try {
-          const response = await instance.acquireTokenPopup(loginRequest);
-          return response.accessToken;
-        } catch (popupError) {
-          console.error('Failed to acquire token via popup:', popupError);
+        if (error instanceof InteractionRequiredAuthError) {
+          await instance.acquireTokenRedirect(loginRequest);
           return null;
         }
+        console.error('Failed to acquire token:', error);
+        return null;
       }
     }
     return null;
