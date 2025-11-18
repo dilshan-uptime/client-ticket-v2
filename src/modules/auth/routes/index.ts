@@ -1,28 +1,28 @@
-import { LoginPage } from "../pages/LoginPage";
-import { SignUpPage } from "../pages/SignUpPage";
+import { SsoLoginPage } from "../pages/SsoLoginPage";
+import { HomePage } from "../pages/HomePage";
 import { TicketPage } from "../pages/TicketPage";
 
-export const LOGIN = "/login";
-export const SIGNUP = "/sign-up";
+export const LOGIN = "/";
+export const HOME = "/home";
 export const TICKET = "/ticket";
 
 export const routes = [
   {
     path: LOGIN,
-    component: LoginPage,
+    component: SsoLoginPage,
     isPrivate: false,
     permission: [],
   },
   {
-    path: SIGNUP,
-    component: SignUpPage,
-    isPrivate: false,
+    path: HOME,
+    component: HomePage,
+    isPrivate: true,
     permission: [],
   },
   {
     path: TICKET,
     component: TicketPage,
-    isPrivate: false,
+    isPrivate: true,
     permission: [],
   },
 ];

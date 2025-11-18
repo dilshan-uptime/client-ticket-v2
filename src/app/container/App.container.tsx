@@ -19,13 +19,16 @@ import type { AuthenticationResponse } from "@/models/auth";
 import { PrivateRoute } from "@/shared/private-route/PrivateRoute.component";
 
 import { Sidebar } from "@/components/layout/NavBar";
+import { useMsalAuth } from "@/hooks/useMsalAuth";
 
 export const AppContainer = () => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(getAppLoading);
   const isLoggedIn = useAppSelector((state) => state.auth.isAuthenticated);
+  
+  useMsalAuth();
 
-  const [sidebarOpen, setSidebarOpen] = useState(true); // control sidebar
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const userRole: UserRole = {
     roleId: roleTypes.CLIENT,
@@ -39,24 +42,24 @@ export const AppContainer = () => {
     if (authFromStorage) {
       dispatch(authActions.authenticateUserSuccess(authFromStorage));
     }
-  }, []);
+  }, [dispatch]);
 
   const renderContainer = () => (
     <BrowserRouter>
       <AppScroller />
 
       {/* Sidebar */}
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
       )}
 
       {/* Main content */}
       <div
         className={`transition-all duration-300 ${
-          !isLoggedIn
+          isLoggedIn
             ? sidebarOpen
-              ? "ml-20"
-              : "ml-0" // content full width when sidebar collapsed
+              ? "ml-56"
+              : "ml-16"
             : "ml-0"
         } w-full p-0`}
       >
